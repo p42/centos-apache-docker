@@ -1,6 +1,6 @@
 #Install Apache on Centos7 with PHP
 # FROM project42/s6-centos-php
-FROM project42/s6-centos:1.18.1.5
+FROM project42/s6-centos:centos7
 MAINTAINER Brandon Cone bcone@esu10.org
 
 #https://wordpress.org/latest.tar.gz
