@@ -1,2 +1,2 @@
 #!/bin/execlineb -P
-/usr/sbin/httpd -DFOREGROUND
+/usr/sbin/httpd -DFOREGROUND -D MYSQL_USER=MYSQL_ROOT_PASSWORD
