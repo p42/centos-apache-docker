@@ -1,4 +1,6 @@
-#! /bin/bash
+#! /bin/bash 
+
+s6-svwait -t 5000 -U /var/run/s6/services/apache 
 
 # Test to verify that the apache server is up and running.
 HTTP_RESPONSE=$( curl -s -o /dev/null -w "%{http_code}" localhost/index.html )
