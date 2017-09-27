@@ -7,7 +7,8 @@ stages:
 variables:
   IMAGE_NAME: "s6-apache"
   IMAGE_TAG: "latest"
-  GITHUB_PROJECT: "p42/s6-centos-apache-docker.git"
+  # GITHUB_PROJECT: "p42/s6-centos-apache-docker.git"
+  GITHUB_PROJECT: "p42/centos-apache-docker.git"
 
 before_script:
   - docker info
