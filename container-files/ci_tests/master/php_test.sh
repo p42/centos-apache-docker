@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/with-contenv sh
 
 RET_VAL=$( curl localhost/test.php )
 # Debugging line, if having issues with this test, try inspecting the returned value/.
