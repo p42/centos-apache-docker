@@ -1,6 +1,8 @@
 #!/bin/with-contenv sh
 
-s6-svwait -t 5000 -U /var/run/s6/services/apache 
+s6-svwait -t 5000 -U /var/run/s6/services/apache
+
+HTML_DESTINATION=${HTML_DESTINATION:=localhost/index.html}
 
 # We're having some issues with startup sequencing where this script is being executed before
 # apache is fully ready - even though the above should wait until that's the case.
@@ -13,14 +15,14 @@ RETRY_TIMES=0
 HTTP_RESPONSE=0
 
 # Since retry times implies the times that you're trying AGAIN, try the first time to touch the server.
-HTTP_RESPONSE=$( curl -s -o /dev/null -w "%{http_code}" localhost/index.html )
+HTTP_RESPONSE=$( curl -s -o /dev/null -w "%{http_code}" $HTML_DESTINATION )
 
 while [[ $HTTP_RESPONSE != 200 ]] && (( ${RETRY_LIMIT} > ${RETRY_TIMES} ))
 do
     s6-svwait -t 5000 -U /var/run/s6/services/apache 
     echo "${RETRY_TIMES} - in the loop"
     (( RETRY_TIMES = RETRY_TIMES + 1 ))
-    HTTP_RESPONSE=$( curl -s -o /dev/null -w "%{http_code}" localhost/index.html )
+    HTTP_RESPONSE=$( curl -s -o /dev/null -w "%{http_code}" $HTML_DESTINATION )
     echo "${HTTP_RESPONSE} response received after ${RETRY_TIMES} tries"
 done
 

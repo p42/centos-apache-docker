@@ -1,6 +1,9 @@
 #!/bin/with-contenv sh
 
-RET_VAL=$( curl localhost/test.php )
+PHP_DESTINATION=${PHP_DESTINATION:=localhost/test.php}
+
+echo "Executing curl command against ${PHP_DESTINATION}."
+RET_VAL=$( curl ${PHP_DESTINATION} )
 # Debugging line, if having issues with this test, try inspecting the returned value/.
 # echo "Ret val is ${RET_VAL}";
 
