@@ -29,7 +29,7 @@ test-master:
     - docker
   stage: test
   script:
-    - docker run -e "HTML_DESTINATION=localhost/index.html" -e "PHP_DESTINATION=localhost/test.php" --rm "${IMAGE_NAME}:${IMAGE_TAG}" /bin/bash /ci_tests/master_test.sh
+    - docker run -e "HTML_DESTINATION=localhost/index.html" -e "PHP_DESTINATION=localhost/test.php" --rm "${IMAGE_NAME}:${IMAGE_TAG}" /ci_tests/run_tests apache
   only:
     - master
 
@@ -39,7 +39,7 @@ test-master:
   #   - docker
 #   stage: test
 #   script:
-#     - docker run --rm "${IMAGE_NAME}:${IMAGE_TAG}" /bin/true
+#     - docker run -e "HTML_DESTINATION=localhost/index.html" -e "PHP_DESTINATION=localhost/test.php" --rm "${IMAGE_NAME}:${IMAGE_TAG}" /ci_tests/run_tests apache
 #   except:
 #     - master
 
